@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kubevirt-mcp"
+version = "0.1.0"
+description = "Model Context Protocol (MCP) server for KubeVirt and OpenShift Virtualization"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Andre Rocha", email = "andre.rocha@linuxelite.com.br" },
+]
+keywords = ["mcp", "kubevirt", "openshift", "virtualization", "kubernetes", "ai", "claude"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Clustering",
+    "Topic :: System :: Systems Administration",
+]
+dependencies = [
+    "mcp[cli]>=1.27.0",
+    # kubernetes>=33 dropped `response_types_map` in favor of `response_type`.
+    # We rely on the new signature in client._vm_subresource.
+    "kubernetes>=33.1.0",
+    "pydantic>=2.10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.7.0",
+]
+
+[project.scripts]
+kubevirt-mcp = "kubevirt_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/linuxelitebr/kubevirt-mcp"
+Repository = "https://github.com/linuxelitebr/kubevirt-mcp"
+Issues = "https://github.com/linuxelitebr/kubevirt-mcp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kubevirt_mcp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-ra"

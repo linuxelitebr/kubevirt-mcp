@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "kubevirt": {
+      "command": "/Users/CHANGE_ME/Documents/git/kubevirt-mcp/.venv/bin/kubevirt-mcp",
+      "env": {
+        "KUBECONFIG": "/Users/CHANGE_ME/.kube/config"
+      }
+    }
+  }
+}
