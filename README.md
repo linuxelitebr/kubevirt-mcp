@@ -90,7 +90,7 @@ have a bad day.
 ## Wire it into Claude Desktop
 
 Edit your config file
-(`~/Library/Application Support/Claude/claude_desktop_config.json` on
+(`~/Library/Application\ Support/Claude/claude_desktop_config.json` on
 macOS, `%APPDATA%\Claude\claude_desktop_config.json` on Windows) and
 add:
 
